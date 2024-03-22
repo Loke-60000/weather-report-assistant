@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
 # Distribution / packaging
 dist/
 build/
@@ -20,3 +21,4 @@ testing/
 
 # hidden file
 hidden.py
+ai_weather/config.py
