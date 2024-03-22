@@ -1,8 +1,10 @@
 import sys
 import os
 from sqlalchemy import create_engine, Column, Integer, String, Float, BigInteger, JSON, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import declarative_base
+
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(
     __file__), os.path.pardir, os.path.pardir, os.path.pardir)))

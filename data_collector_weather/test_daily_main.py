@@ -1,5 +1,4 @@
 import pytest
-from unittest.mock import MagicMock
 from functions.db_and_table_init import connect_to_database
 from meteofrance_api.helpers import readeable_phenomenoms_dict
 from meteofrance_api import MeteoFranceClient
@@ -14,7 +13,7 @@ PORT = "5432"
 city_list = ["Paris", "Montpellier", "Lyon", "Marseille", "Toulouse",]
 
 
-@pytest.mark.fixture("mock_dependencies")
+@pytest.fixture
 def test_connect_to_database():
     conn = connect_to_database()
     assert conn is not None, "Connection to the database failed."
