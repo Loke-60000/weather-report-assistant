@@ -1,3 +1,7 @@
+# Weather-report-assistant
+
+### An AI-powered weather application providing accurate and updated forecasts in text and voice synthesis. It collects, processes, and stores weather data, ensuring a personalized and user-friendly weather experience.
+
 # Setting up a Cron Job
 
 ## Follow these steps to set up a cron job to run your script at regular intervals:
@@ -12,10 +16,7 @@ To begin, find the name of your conda environment by running the following comma
 
 ### This schedules your script to run every 30 minutes
 
-```
-*/30 * * * * /home/lokman/anaconda3/envs/YOUR_ENV_NAME/bin/python /home/lokman/simplon/00.briefs/17.weather/my_script.py
-
-```
+`*/30 * * * * /home/lokman/anaconda3/envs/YOUR_ENV_NAME/bin/python /home/lokman/simplon/00.briefs/17.weather/my_script.py`
 
 ## Step 4: Verify the cron job has been added
 
