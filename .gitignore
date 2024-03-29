@@ -21,4 +21,5 @@ testing/
 
 # hidden file
 hidden.py
+
 ai_weather/config.py

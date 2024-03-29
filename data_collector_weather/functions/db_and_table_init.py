@@ -5,12 +5,17 @@ from sqlalchemy import create_engine, Column, Integer, String, Float, BigInteger
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import declarative_base
 
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(
-    __file__), os.path.pardir, os.path.pardir, os.path.pardir)))
 from hidden import DATABASE, USER, PASSWORD, HOST, PORT
 
+
+# DATABASE = os.getenv("DATABASE")
+# USER = os.getenv("USER")
+# PASSWORD = os.getenv("PASSWORD")
+# HOST = os.getenv("HOST")
+# PORT = os.getenv("PORT")
+
 Base = declarative_base()
+
 
 class MeteoFrance(Base):
     __tablename__ = 'french_cities_weather'
@@ -30,13 +35,16 @@ class MeteoFrance(Base):
     weather_icon = Column(String)
     readable_warnings = Column(String)
 
+
 def connect_to_database():
-    engine = create_engine(f'postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}')
+    engine = create_engine(
+        f'postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}')
 
     Session = sessionmaker(bind=engine)
     session = Session()
 
     return session
+
 
 def create_table(session):
     Base.metadata.create_all(session.get_bind())

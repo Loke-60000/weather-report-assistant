@@ -12,6 +12,7 @@ from sqlalchemy.orm import sessionmaker
 import requests
 from gtts import gTTS
 import base64
+from fastapi import Body
 
 sys.path.append(os.path.abspath(
     os.path.join(os.path.dirname(__file__), '../../')))
@@ -73,8 +74,10 @@ weather_data = fetch_weather_data(session, city)
 
 
 @app.post("/chat")
-def chat(message: Optional[str] = None):
+def chat(message: Optional[str] = None, city: str = Body(..., embed=True)):
     user_message = message if message else ''
+    global weather_data 
+    weather_data = fetch_weather_data(session, city)
 
     ai_context = "You are a weather reporter. You are assisting a user with weather information."
     if weather_data:
@@ -111,7 +114,6 @@ def chat(message: Optional[str] = None):
     def get_audio(text):
         tts = gTTS(text=text, lang='en')
         tts.save("response.mp3")
-        # return audio in base64
         with open("response.mp3", "rb") as audio_file:
             encoded_audio = base64.b64encode(audio_file.read()).decode('utf-8')
         return encoded_audio
@@ -130,4 +132,4 @@ def chat(message: Optional[str] = None):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)

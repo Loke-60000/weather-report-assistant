@@ -4,14 +4,7 @@ from meteofrance_api.helpers import readeable_phenomenoms_dict
 from meteofrance_api import MeteoFranceClient
 from meteofrance_api import MeteoFranceClient
 
-DATABASE = "franceForecast"
-USER = "lokman"
-PASSWORD = "lokman"
-HOST = "localhost"
-PORT = "5432"
-
 city_list = ["Paris", "Montpellier", "Lyon", "Marseille", "Toulouse",]
-
 
 @pytest.fixture
 def test_connect_to_database():
