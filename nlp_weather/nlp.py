@@ -3,8 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from typing import Optional
-import sys
-import os
+
 from sqlalchemy import Column, Integer, String, Float, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
@@ -14,8 +13,6 @@ from gtts import gTTS
 import base64
 from fastapi import Body
 
-sys.path.append(os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '../../')))
 
 from hidden import DATABASE, USER, PASSWORD, HOST, PORT, api_key, provider, model
 
@@ -76,7 +73,7 @@ weather_data = fetch_weather_data(session, city)
 @app.post("/chat")
 def chat(message: Optional[str] = None, city: str = Body(..., embed=True)):
     user_message = message if message else ''
-    global weather_data 
+    global weather_data
     weather_data = fetch_weather_data(session, city)
 
     ai_context = "You are a weather reporter. You are assisting a user with weather information."

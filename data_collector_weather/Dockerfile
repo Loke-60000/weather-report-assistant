@@ -12,4 +12,4 @@ RUN apk add --no-cache postgresql-dev \
 EXPOSE 5432
 
 
-CMD ["python", "main.py"]
+CMD ["python", "collect.py"]

@@ -1,0 +1,8 @@
+uvicorn
+fastapi
+sqlalchemy
+requests
+gtts
+pytest
+meteofrance_api
+docker

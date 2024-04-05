@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="secondaryContainer">
+        <div class="searchContainer">
+          <input
+            type="text"
+            id="cityInput"
+            class="searchBar"
+            placeholder="Search..."
+          />
+          <button id="searchButton" class="searchButton">🔎</button>
+        </div>
+        <div class="resultsContainer">
+          <div class="resultsTop">
+            <p class="date" id="date">Date</p>
+            <p class="city" id="city">City</p>
+            <div class="temperature" id="temperature">Temperature</div>
+            <div class="weather" id="weather">Weather</div>
+          </div>
+          <div>
+            <p class="icon" id="weatherIcon">❓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <audio id="audio" controls></audio>
+  </body>
 </html>

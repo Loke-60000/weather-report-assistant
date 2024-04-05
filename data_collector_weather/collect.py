@@ -9,7 +9,6 @@ def run_daily_batch():
     client = MeteoFranceClient()
     conn = connect_to_database()
     create_table(conn)
-
     for c in cities:
         list_places = client.search_places(c)
         if list_places:

@@ -1,23 +1,74 @@
-# Weather-report-assistant
+# Weather Report Assistant
 
-### An AI-powered weather application providing accurate and updated forecasts in text and voice synthesis. It collects, processes, and stores weather data, ensuring a personalized and user-friendly weather experience.
+### Overview
 
-# Setting up a Cron Job
+An AI-powered weather application that offers accurate and updated forecasts in both text and voice synthesis formats. This application is designed to collect, process, and store weather data, ensuring a personalized and user-friendly experience for its users.
 
-## Follow these steps to set up a cron job to run your script at regular intervals:
+### Features
 
-### Step 1: Get your conda environment name
+- **Accurate Forecasts**: Receive up-to-date weather forecasts.
+- **Text and Voice Synthesis**: Get weather information in your preferred format.
+- **Data Handling**: Efficient collection, processing, and storage of weather data.
+- **User Personalization**: Enjoy a tailored weather reporting experience.
 
-To begin, find the name of your conda environment by running the following command:
+### Data Collector
 
-`crontab -e`
+This component is responsible for fetching weather forecasts for a specified list of cities and storing the data in a PostgreSQL database. It can be executed manually or scheduled to run automatically using cron on Linux.
 
-## Step 3: Add the following line to the end of the crontab file
+#### Manual Execution
 
-### This schedules your script to run every 30 minutes
+Run the following command to manually execute the data collection script:
 
-`*/30 * * * * /home/lokman/anaconda3/envs/YOUR_ENV_NAME/bin/python /home/lokman/simplon/00.briefs/17.weather/my_script.py`
+```bash
+python collect.py
+```
 
-## Step 4: Verify the cron job has been added
+#### Scheduling with Cron
 
-`crontab -l`
+1. **Identify Your Conda Environment**
+
+    ```bash
+    conda env list | awk '{if ($1 != "#") print $2}'
+    ```
+
+2. **Edit Crontab**
+
+    ```bash
+    crontab -e
+    ```
+
+3. **Schedule the Script**
+
+    Add the following line to schedule your script to run every 30 minutes. Replace `YOUR_CONDA_ENV` with your actual Conda environment name:
+
+    ```bash
+    */30 * * * * /home/lokman/anaconda3/envs/YOUR_CONDA_ENV/bin/python /path/to/collect.py
+    ```
+
+4. **Verify Cron Job**
+
+    ```bash
+    crontab -l
+    ```
+
+### NLP Module
+
+Generates a weather report for a specified city from received data and converts it into an audio file in base64 format. Accessible through the API.
+
+To run the NLP module:
+
+```bash
+python nlp.py
+```
+
+Navigate to the `nlp_weather` directory and execute the command above.
+
+### HTTP Server
+
+To initiate the HTTP server for the application:
+
+```bash
+python server.py
+```
+
+This starts the server, allowing for interaction with the application's front end.

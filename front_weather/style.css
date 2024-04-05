@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
+:root {
+  --background-color: #f0f0f0;
+  --primary-color: #a79277;
+  --secondary-color: #d1bb9e;
+
+  --widget-size: 600px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  font-family: "Oswald", sans-serif;
+  background-image: url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwBACdASooACgAPpFIn0ulpCKho4gAsBIJaQAAGyg++AMOPJcIh1vN4A3JOAgAAP7303fUrHm+dXumNOVhmg63JOcuKe4hiGDZhJM6lHh/lPwIC/tL9AgReSwY2HZxK3j9BoYlSQAAAA==);
+}
+.mainContainer {
+  height: var(--widget-size);
+  width: var(--widget-size);
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #a79277;
+  box-shadow: 26px 26px 0px #897862, -26px -26px 0px #c5ac8c;
+}
+.secondaryContainer {
+  height: 90%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+}
+
+input[type="text"] {
+  height: 40px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+  padding: 0 10px;
+  font-size: 1.2rem;
+  background-color: transparent;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  background-color: white;
+  border-radius: 5px;
+  /* add neumorphism */
+  box-shadow: 5px 5px 10px #b0a18f, -5px -5px 10px #c9c9c9;
+}
+
+.searchContainer button {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* .resultsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  height: 90%;
+} */
+.icon {
+  font-size: 130px;
+  position: relative;
+  top: -20px;
+  text-align: center;
+}
+
+.resultsTop {
+  /* use grid */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+audio {
+  /* background color */
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-volume-slider-container,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button,
+audio::-webkit-media-controls-fullscreen-button,
+audio::-webkit-media-controls-rewind-button,
+audio::-webkit-media-controls-return-to-realtime-button,
+audio::-webkit-media-controls-toggle-closed-captions-button {
+  color: white;
+  outline: none;
+}
+
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-play-button {
+  background-color: white;
+}
+
+audio::-webkit-media-controls-timeline {
+  border-radius: 5px;
+  color: white;
+}
