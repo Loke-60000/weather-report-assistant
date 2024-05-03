@@ -1,74 +1,65 @@
-# Weather Report Assistant
 
-### Overview
+# Weather Report Assistant Setup Guide
 
-An AI-powered weather application that offers accurate and updated forecasts in both text and voice synthesis formats. This application is designed to collect, process, and store weather data, ensuring a personalized and user-friendly experience for its users.
+## Overview
 
-### Features
+This document details the setup process for the Weather Report Assistant, a chatbot application designed to deliver weather reports. The application is structured into three main services: Data Collector, NLP Module, and HTTP Server (Frontend). Each service operates within its own Docker container and is stored in separate folders as outlined below. It is essential to have a PostgreSQL database running as it is required for storing the collected weather data.
 
-- **Accurate Forecasts**: Receive up-to-date weather forecasts.
-- **Text and Voice Synthesis**: Get weather information in your preferred format.
-- **Data Handling**: Efficient collection, processing, and storage of weather data.
-- **User Personalization**: Enjoy a tailored weather reporting experience.
+## Services and Instructions
 
-### Data Collector
+### 1. Data Collector (`backend_weather_data_collector`)
 
-This component is responsible for fetching weather forecasts for a specified list of cities and storing the data in a PostgreSQL database. It can be executed manually or scheduled to run automatically using cron on Linux.
+Responsible for fetching and storing weather data, which is then used by other components of the application. This service requires a PostgreSQL database to be running.
 
-#### Manual Execution
+**Location:** `backend_weather_data_collector/`
 
-Run the following command to manually execute the data collection script:
+**Docker Build:**
 
 ```bash
-python collect.py
+cd data_collector_weather
+docker build -t data_collector_weather .
 ```
 
-#### Scheduling with Cron
-
-1. **Identify Your Conda Environment**
-
-    ```bash
-    conda env list | awk '{if ($1 != "#") print $2}'
-    ```
-
-2. **Edit Crontab**
-
-    ```bash
-    crontab -e
-    ```
-
-3. **Schedule the Script**
-
-    Add the following line to schedule your script to run every 30 minutes. Replace `YOUR_CONDA_ENV` with your actual Conda environment name:
-
-    ```bash
-    */30 * * * * /home/lokman/anaconda3/envs/YOUR_CONDA_ENV/bin/python /path/to/collect.py
-    ```
-
-4. **Verify Cron Job**
-
-    ```bash
-    crontab -l
-    ```
-
-### NLP Module
-
-Generates a weather report for a specified city from received data and converts it into an audio file in base64 format. Accessible through the API.
-
-To run the NLP module:
+**Docker Run:**
 
 ```bash
-python nlp.py
+docker run -d -p 5432:5432 data_collector_weather
 ```
 
-Navigate to the `nlp_weather` directory and execute the command above.
+### 2. NLP Module (`backend_nlp`)
 
-### HTTP Server
+This service processes the collected weather data to generate textual and audio weather reports, making it the core component of the chatbot's response system. It also relies on the PostgreSQL database for accessing the stored data.
 
-To initiate the HTTP server for the application:
+**Location:** `backend_nlp/`
+
+**Docker Build:**
 
 ```bash
-python server.py
+cd nlp_weather
+docker build -t nlp_weather .
 ```
 
-This starts the server, allowing for interaction with the application's front end.
+**Docker Run:**
+
+```bash
+docker run -d -p 8000:8000 nlp_weather
+```
+
+### 3. HTTP Server (Frontend) (`frontend`)
+
+Hosts the user interface for the chatbot, where users can interact with the application to receive weather updates.
+
+**Location:** `frontend/`
+
+**Docker Build:**
+
+```bash
+cd frontend
+docker build -t frontend_server .
+```
+
+**Docker Run:**
+
+```bash
+docker run -d -p 3000:3000 frontend_server
+```
